@@ -1,5 +1,15 @@
 # Roadmap
 
+_Refreshed September 23, 2026. Plans, not promises: priorities can shift with user feedback._
+
+- Next: feed-health scoring (latency, freshness, failure rate) and a machine-readable status endpoint.
+- Then: safer feed onboarding with schema validation, per-feed tests, and documented provenance/licensing.
+- Later: signed multi-arch container releases and a small read-only status UI, without turning the importer into a full dashboard.
+
+---
+
+## Earlier roadmap notes
+
 This document outlines the planned features and improvements for `crowdsec-blocklist-import`. We welcome community contributions to any of these items.
 
 **Current Version:** v3.6.0
