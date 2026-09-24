@@ -12,8 +12,8 @@ _Refreshed September 23, 2026. Plans, not promises: priorities can shift with us
 
 This document outlines the planned features and improvements for `crowdsec-blocklist-import`. We welcome community contributions to any of these items.
 
-**Current Version:** v3.6.0
-**GitHub Stars:** 167
+**Current Version:** v3.8.0
+**GitHub Stars:** 363
 
 ---
 
