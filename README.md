@@ -632,7 +632,7 @@ For more troubleshooting, see [FAQ](docs/faq.md).
 | **Dependencies** | `requests`, `python-dotenv` (+ optional `prometheus-client`) |
 | **Memory** | ~50-100 MB streaming processing (300k+ IPs) |
 | **Speed** | 500-1000 IPs/second depending on network and LAPI |
-| **Docker Image** | `ghcr.io/wolffcatskyy/crowdsec-blocklist-import:latest` (~150 MB) |
+| **Docker Image** | `ghcr.io/wolffcatskyy/crowdsec-blocklist-import:latest` (~85 MB) |
 | **Auth** | CrowdSec LAPI machine credentials (JWT) + bouncer key |
 
 ---
