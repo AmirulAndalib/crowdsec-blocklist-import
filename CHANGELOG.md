@@ -32,6 +32,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com), and this 
 - **Monty Security C2 feed** — Removed from the registry, setup wizard, and docs; upstream deleted `data/all.txt` and no replacement URL is confirmed (#80). Configurations that still set `ENABLE_MONTY_SECURITY_C2` now log an error naming the feed as removed. The true feed count is 31; README, `pyproject.toml`, and CONTRIBUTING updated to match `--list-sources`.
 
 ---
+## [3.9.0] — 2026-09-24
+
+### Added
+
+- **Feed presets (`PRESET=`)** — `embedded` (Spamhaus DROP, abuse.ch Feodo + URLhaus, Emerging Threats, IPsum; stays around ~20K IPs, safe for UDM/UDR-class devices), `server` (the legacy set minus Firehol level3, VXVault, Tor, and dead feeds), and `max` (everything; the pre-v3.9 behavior). Presets set the default for every `ENABLE_*` switch; explicit values always win. `PRESET=embedded` also caps decisions at 15,000 (`MAX_DECISIONS`) unless you set your own value. Addresses #21, #26, #38, #98.
+- **Defaults-flip deprecation warning** — runs with neither `PRESET` nor `BLOCKLISTS_OPT_IN` set log a loud warning on every run and include it in webhook notifications. v4.0.0 will switch the no-config fallback to `PRESET=server`.
+- **Zero-feed guardrail** — a run with zero enabled feeds now exits non-zero with a clear message instead of silently importing nothing.
+- **Feed health metrics** — new per-source Prometheus gauges: `blocklist_import_source_last_success_timestamp`, `blocklist_import_source_entries`, `blocklist_import_source_unique_contribution`, and `blocklist_import_source_http_status`.
+- **`FAIL_ON_DEAD_FEED`** — set to `true` to exit non-zero when any enabled feed fails to fetch.
+- **Per-feed license metadata** — `--list-sources` now reports each feed's license plus `attribution_required` and `commercial_ok` flags (checked against provider terms) so MSP and business users can filter feeds before enabling them.
+
+### Notes
+
+- **No default behavior changes in this release.** With no configuration, all feeds stay enabled exactly as before; the behavior change lands in v4.0.0. Set `PRESET=max` now to keep it, or `PRESET=server` / `PRESET=embedded` to move early.
+
+
+---
 ## [3.8.0] — 2026-09-22
 
 ### Added
