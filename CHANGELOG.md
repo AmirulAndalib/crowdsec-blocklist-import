@@ -5,6 +5,25 @@ All notable changes to crowdsec-blocklist-import are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
 ---
+## [Unreleased]
+
+### Added
+
+- **`--list-sources --format md`** — Print the source list as a Markdown table with a live feed count, so documentation can be regenerated instead of drifting.
+
+### Fixed
+
+- **Documentation consistency** — Feed count is now 32 everywhere (README, pyproject description, contributing guide), matching `--list-sources`. Previously the repo description said 36, the README said 28+, and older copy said 21+.
+- **Python version claims** — CONTRIBUTING, FAQ, and migration docs now say Python 3.9+, matching `requires-python` in `pyproject.toml`. They previously claimed 3.11+.
+- **README blocklist table** — Removed the defunct Abuse.ch SSL blacklist and the non-existent Talos mention; added the missing Sentinel feed.
+- **`pyproject.toml` version** — Bumped to 3.8.0 to match `__version__` in `blocklist_import.py`.
+- **Config reference** — Documented the `ENABLE_FIREHOL_LEVEL1/2/3` per-level overrides.
+
+### Removed
+
+- **`STATE.md`** — Stale generated repository-state report (dated 2026-02-22, claimed v3.4.0 and 36 feeds) that contradicted current docs.
+
+---
 ## [3.8.0] — 2026-09-22
 
 ### Added
