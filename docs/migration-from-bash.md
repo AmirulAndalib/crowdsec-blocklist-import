@@ -245,7 +245,7 @@ docker compose logs -f blocklist-import
 
 ## Step-by-Step Migration for Standalone Users
 
-### 1. Install Python 3.11+
+### 1. Install Python 3.9+
 
 ```bash
 # Debian/Ubuntu
