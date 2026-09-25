@@ -69,7 +69,7 @@ python3 blocklist_import.py
 ```
 
 **Requirements:**
-- Python 3.11+
+- Python 3.9+
 - pip (Python package manager)
 - Network access to blocklist sources and CrowdSec LAPI
 
