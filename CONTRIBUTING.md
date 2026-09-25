@@ -37,10 +37,10 @@ Then review the output, test it, and submit a PR. That's it.
 
 ### Prerequisites
 
-Python 3.11+ is required.
+Python 3.9+ is required (matching `requires-python` in `pyproject.toml`).
 
 ```bash
-python3 --version  # Should be 3.11+
+python3 --version  # Should be 3.9+
 ```
 
 ### Install Dependencies
@@ -98,7 +98,7 @@ docker run --rm \
 
 ## Project Architecture
 
-This is a **Python 3.11+ application** (`blocklist_import.py`, ~2000 lines):
+This is a **Python 3.9+ application** (`blocklist_import.py`, ~2000 lines):
 
 ### Structure
 
@@ -108,7 +108,7 @@ This is a **Python 3.11+ application** (`blocklist_import.py`, ~2000 lines):
   - Customizable batch sizes, timeouts, retry logic
 
 - **Blocklist Sources** (`BlocklistSource` dataclass, `BLOCKLIST_SOURCES` list)
-  - 28+ public threat feeds (IPsum, Spamhaus, Firehol, etc.)
+  - 32 public threat feeds (IPsum, Spamhaus, Firehol, etc.)
   - Per-source configuration (URL, comment format, field extraction)
   - Environment variable control (`ENABLE_*` flags)
 
