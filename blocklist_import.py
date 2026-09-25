@@ -696,11 +696,8 @@ class Config:
         )
 
 
-def list_blocklist_sources(logger: logging.Logger) -> None:
+def list_blocklist_sources(logger: logging.Logger, fmt: str = "text") -> None:
     """Print a formatted list of all available blocklist sources."""
-    logger.info("Available blocklist sources:")
-    logger.info("")
-
     # Group sources by their enable key
     sources_by_key: dict[str, list[str]] = {}
     for source in BLOCKLIST_SOURCES:
@@ -708,6 +705,24 @@ def list_blocklist_sources(logger: logging.Logger) -> None:
         if env_var not in sources_by_key:
             sources_by_key[env_var] = []
         sources_by_key[env_var].append(source.name)
+
+    total = sum(len(names) for names in sources_by_key.values())
+
+    if fmt == "md":
+        # Docs-ready table; printed without log decoration so the output can be
+        # piped straight into documentation:
+        #   python blocklist_import.py --list-sources --format md > docs/feeds.md
+        print("| Feed | Enable variable |")
+        print("|------|-----------------|")
+        for env_var in sorted(sources_by_key.keys()):
+            for source in sources_by_key[env_var]:
+                print(f"| {source} | `{env_var}` |")
+        print()
+        print(f"**{total} feeds across {len(sources_by_key)} enable variables.**")
+        return
+
+    logger.info("Available blocklist sources:")
+    logger.info("")
 
     # Print each group
     for env_var in sorted(sources_by_key.keys()):
@@ -2802,6 +2817,13 @@ cause the program to exit with an error. Unknown ENABLE_* variables
     )
 
     parser.add_argument(
+        "--format",
+        choices=["text", "md"],
+        default="text",
+        help="Output format for --list-sources (default: text)",
+    )
+
+    parser.add_argument(
         "--pushgateway-url",
         help="Push URL for Prometheus (overrides METRICS_PUSHGATEWAY_URL, default: localhost:9091)",
     )
@@ -2905,7 +2927,7 @@ def main() -> int:
     # Handle --list-sources flag
     if args.list_sources:
         logger.info(f"CrowdSec Blocklist Import v{__version__}")
-        list_blocklist_sources(logger)
+        list_blocklist_sources(logger, fmt=args.format)
         return 0
 
     # Validate ENABLE_* environment variables
@@ -2927,7 +2949,7 @@ def main() -> int:
         logger.info(f"CrowdSec Blocklist Import v{__version__}")
         logger.info("Configuration validation passed!")
         logger.info("")
-        list_blocklist_sources(logger)
+        list_blocklist_sources(logger, fmt=args.format)
         return 0
 
     # Initialize Prometheus metrics
