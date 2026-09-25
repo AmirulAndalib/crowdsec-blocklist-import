@@ -174,6 +174,9 @@ Each blocklist source can be individually enabled or disabled. By default, block
 | ENABLE_SPAMHAUS | Spamhaus DROP list | `true` |
 | ENABLE_BLOCKLIST_DE | Blocklist.de abuse IP database | `true` |
 | ENABLE_FIREHOL | FireHOL threat intelligence lists | `true` |
+| ENABLE_FIREHOL_LEVEL1 | FireHOL level1 list (overrides ENABLE_FIREHOL) | `true` |
+| ENABLE_FIREHOL_LEVEL2 | FireHOL level2 list (overrides ENABLE_FIREHOL) | `true` |
+| ENABLE_FIREHOL_LEVEL3 | FireHOL level3 list (overrides ENABLE_FIREHOL) | `true` |
 | ENABLE_ABUSE_CH | Abuse.ch malware IP lists | `true` |
 | ENABLE_EMERGING_THREATS | Emerging Threats ETopen IP reputation | `true` |
 | ENABLE_BINARY_DEFENSE | Binary Defense Systems threat feed | `true` |
